@@ -65,7 +65,6 @@ app.get('/isLoggedin', (req, res) => {
 });
 
 // Oauth process
-<<<<<<< HEAD
 // app.get('/oauth', (req, res) => {
 //   const code = req.query.code;
 //   // const clientID = add client ID;
@@ -91,36 +90,9 @@ app.get('/isLoggedin', (req, res) => {
 //     }
 //   );
 // });
-function parse(input) {
-  return input.match(/setTimeout\((.*)\,(.*)\)/);
-}
-=======
-app.get('/oauth', (req, res) => {
-  const code = req.query.code;
-  // const clientID = add client ID;
-  // const secret = add client secret;
-
-  request.post(
-    `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${secret}&code=${code}`,
-
-    (err, response) => {
-      const url = `https://api.github.com/user?${response.body}`;
-
-      const options = {
-        url,
-        headers: {
-          'User-Agent': 'request',
-          Accept: 'application/vnd.github.v3+json'
-        }
-      };
-
-      request.get(options, (error, data) => {
-        console.log(data);
-      });
-    }
-  );
-});
->>>>>>> 77f6e0ef1d31340d939cb5e2fc8f59b01c43f6ed
+// function parse(input) {
+//   return input.match(/setTimeout\((.*)\,(.*)\)/);
+// }
 
 app.post('/parse', (req, res) => {
   const { program } = req.body;
