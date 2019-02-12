@@ -27,6 +27,8 @@ app.use(
   })
 );
 
+// app.use('/src', express.static(__dirname + '/src'));
+
 // /////////////////////////////
 // connect to Postgres database here
 // //////////////////////////
@@ -63,6 +65,7 @@ app.get('/isLoggedin', (req, res) => {
 });
 
 // Oauth process
+<<<<<<< HEAD
 // app.get('/oauth', (req, res) => {
 //   const code = req.query.code;
 //   // const clientID = add client ID;
@@ -91,11 +94,59 @@ app.get('/isLoggedin', (req, res) => {
 function parse(input) {
   return input.match(/setTimeout\((.*)\,(.*)\)/);
 }
+=======
+app.get('/oauth', (req, res) => {
+  const code = req.query.code;
+  // const clientID = add client ID;
+  // const secret = add client secret;
+
+  request.post(
+    `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${secret}&code=${code}`,
+
+    (err, response) => {
+      const url = `https://api.github.com/user?${response.body}`;
+
+      const options = {
+        url,
+        headers: {
+          'User-Agent': 'request',
+          Accept: 'application/vnd.github.v3+json'
+        }
+      };
+
+      request.get(options, (error, data) => {
+        console.log(data);
+      });
+    }
+  );
+});
+>>>>>>> 77f6e0ef1d31340d939cb5e2fc8f59b01c43f6ed
 
 app.post('/parse', (req, res) => {
   const { program } = req.body;
-  const result = parse(program);
-  res.json(result);
+  let criteria = [/setTimeout\((.*)\,(.*)\)/, /console.log\((.*)\)/];
+  if (program[program.length - 1] !== ';') return res.json('Error');
+  // const result = program.match(/setTimeout\((.*)\,(.*)\)/);
+  const newResult = {};
+
+  if (program.match(criteria[0])) {
+    let array = program.match(criteria[0]);
+    newResult.isAsync = true;
+    // newResult.result = program.match(criteria[0]);
+    newResult.expression = array[0];
+    newResult.callback = array[1];
+    newResult.function = array[1].match(criteria[1])[0];
+    newResult.output = array[1].match(criteria[1])[1];
+    newResult.duration = array[2];
+  } else if (program.match(criteria[1])) {
+    newResult.isAsync = false;
+    newResult.result = program.match(criteria[1]);
+  }
+  if (newResult.expression) {
+    console.log('result is ', newResult);
+    return res.json(newResult);
+  }
+  return res.json('Error');
 });
 
 server.listen(3000, () => {
