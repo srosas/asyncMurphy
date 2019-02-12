@@ -5,6 +5,7 @@ function Form({ saveUser }) {
 
   return (
     <form
+      method='POST' action='/signup'
       onSubmit={event => {
         event.preventDefault();
         saveUser(user);
