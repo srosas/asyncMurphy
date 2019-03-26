@@ -47,11 +47,7 @@ app.get('/', cookieController.setCookie, (req, res) => {
 
 // Render to signup page
 app.get('/signup', (req, res) => {
-<<<<<<< HEAD
-  res.render('./src/signup', { error: null });
-=======
   res.render('./../client/signIn', { error: null });
->>>>>>> 4b1e93890de8245ea0e086df260a5f479faa42ae
 });
 
 //Post to signup page
