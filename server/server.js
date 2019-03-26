@@ -27,7 +27,7 @@ app.use(
   })
 );
 
-// app.use('/src', express.static(__dirname + '/src'));
+app.use(express.static('/src'));
 
 // /////////////////////////////
 // connect to Postgres database here

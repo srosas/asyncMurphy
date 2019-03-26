@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SignIn from './SignIn.jsx';
-
+import logo from '../../pictures/logo.png'
 import InputBox from './InputBox.jsx';
 import CallStorage from './CallStorage.jsx';
 import StackFunction from './StackFunction.jsx';
@@ -68,24 +68,27 @@ class App extends Component {
   render() {
     const { callStack, callBackQueue, webApi, output, textBoxValue, error } = this.state;
     return (
-      <div className="grid-container">
-        <InputBox
-          className="textBox"
-          textBoxValue={textBoxValue}
-          handleChange={this.handleChange}
-          callStack={callStack}
-          callBackQueue={callBackQueue}
-          webApi={webApi}
-          output={output}
-          error={error}
-          updateStorage={this.updateStorage}
-          popStack={this.popStack}
-          outputError={this.outputError}
-        />
-        <CallStorage popStack={this.popStack} className="callBackQueue" storage={callBackQueue} />
-        <CallStorage popStack={this.popStack} className="callStack" storage={callStack} />
-        <CallStorage popStack={this.popStack} className="webApi" storage={webApi} />
-        <CallStorage popStack={this.popStack} className="output" storage={output} />
+      <div>
+        <img src={logo} />
+        <div className="grid-container">
+          <InputBox
+            className="textBox"
+            textBoxValue={textBoxValue}
+            handleChange={this.handleChange}
+            callStack={callStack}
+            callBackQueue={callBackQueue}
+            webApi={webApi}
+            output={output}
+            error={error}
+            updateStorage={this.updateStorage}
+            popStack={this.popStack}
+            outputError={this.outputError}
+          />
+          <CallStorage popStack={this.popStack} className="callBackQueue" storage={callBackQueue} />
+          <CallStorage popStack={this.popStack} className="callStack" storage={callStack} />
+          <CallStorage popStack={this.popStack} className="webApi" storage={webApi} />
+          <CallStorage popStack={this.popStack} className="output" storage={output} />
+        </div>
       </div>
     );
   }
