@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import SignIn from './SignIn.jsx';
+<<<<<<< HEAD
 import logo from '../../pictures/logo.png'
+=======
+>>>>>>> 4b1e93890de8245ea0e086df260a5f479faa42ae
 import InputBox from './InputBox.jsx';
 import CallStorage from './CallStorage.jsx';
 import StackFunction from './StackFunction.jsx';
@@ -69,7 +72,14 @@ class App extends Component {
     const { callStack, callBackQueue, webApi, output, textBoxValue, error } = this.state;
     return (
       <div>
+<<<<<<< HEAD
         <img src={logo} />
+=======
+        <div style={{ display: 'Flex', alignItems: 'center' }}>
+          <img src={require('../../pictures/axolotl2.png')} style={{ width: '30%', height: '30%' }} />
+          <h1 style={{ fontFamily: 'Luckiest Guy', fontSize: '500%' }}>AsyncMurphy</h1>
+        </div>
+>>>>>>> 4b1e93890de8245ea0e086df260a5f479faa42ae
         <div className="grid-container">
           <InputBox
             className="textBox"

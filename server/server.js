@@ -47,7 +47,11 @@ app.get('/', cookieController.setCookie, (req, res) => {
 
 // Render to signup page
 app.get('/signup', (req, res) => {
+<<<<<<< HEAD
   res.render('./src/signup', { error: null });
+=======
+  res.render('./../client/signIn', { error: null });
+>>>>>>> 4b1e93890de8245ea0e086df260a5f479faa42ae
 });
 
 //Post to signup page
@@ -121,8 +125,13 @@ app.post('/parse', (req, res) => {
   return res.json('Error');
 });
 
+<<<<<<< HEAD
 server.listen(3000, () => {
   console.log('listening at http://localhost:3000');
+=======
+app.listen(3000, () => {
+  console.log('listening on port 3000...')
+>>>>>>> 4b1e93890de8245ea0e086df260a5f479faa42ae
 });
 
 module.exports = server;
