@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { GithubLoginButton } from "react-social-login-buttons";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -27,6 +28,13 @@ function Login() {
         Password:<input type="text" value={password} onChange={event => setPassword(event.target.value)} />
         <input type="button" value="LOGIN" onClick={handleSubmit} />
       </form>
+      <GithubLoginButton
+        className="ghlogin"
+        onClick={() => {
+          location.href =
+            "https://github.com/login/oauth/authorize?client_id=774ac2eee48a5146e608";
+        }}
+      />
     </div >
   )
 }

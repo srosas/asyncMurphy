@@ -47,10 +47,10 @@ app.post('/signup', userController.registerUser);
 app.post('/login', userController.authenticateUser);
 
 //Post to signup page
-app.post('/signup', userController.createUser);
+// app.post('/signup', userController.createUser);
 
 //Post to login page
-app.post('/login', userController.verifyUser);
+// app.post('/login', userController.verifyUser);
 
 //able to see only if logged in
 app.get('/isLoggedin', (req, res) => {
@@ -62,14 +62,16 @@ app.get('/isLoggedin', (req, res) => {
 
 // Oauth process
 app.get('/oauth', (req, res) => {
+  console.log('req code', req.query.code)
   const code = req.query.code;
-  // const clientID = add client ID;
-  // const secret = add client secret;
+  const clientID = '774ac2eee48a5146e608';
+  const secret = '425903e0d8a2cd9c35d8c18589b9a1da30b0f81e';
 
   request.post(
     `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${secret}&code=${code}`,
 
     (err, response) => {
+      console.log('res in oauth', response.body)
       const url = `https://api.github.com/user?${response.body}`;
 
       const options = {
@@ -81,7 +83,7 @@ app.get('/oauth', (req, res) => {
       };
 
       request.get(options, (error, data) => {
-        console.log(data);
+        console.log(error);
       });
     },
   );
